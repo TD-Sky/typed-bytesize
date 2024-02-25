@@ -1,10 +1,10 @@
 [package]
 name = "typed-bytesize"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Collide <three-dim-sky@foxmail.com>"]
 description = "Represent bytesize in decimal or binary prefix unit"
-documentation = "https://github.com/TD-Sky/typed-bytesize"
+documentation = "https://docs.rs/typed-bytesize"
 repository = "https://github.com/TD-Sky/typed-bytesize"
 readme = "README.md"
 categories = ["value-formatting", "parser-implementations"]

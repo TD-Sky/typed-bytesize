@@ -147,7 +147,7 @@ fn test_parse_min() {
 }
 
 #[test]
-fn test_parse_with_whitespace() {
+fn test_parse_with_mid_spaces() {
     assert_si_eq!("114.514 kB", ByteSizeSi(114514));
     assert_iec_eq!("114.514    KiB", ByteSizeIec(117262));
     assert_si_error!("114.514\tKB", Error::Unit);

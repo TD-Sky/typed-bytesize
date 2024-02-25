@@ -1,3 +1,5 @@
+#![doc = include_str!("../README.md")]
+
 #[cfg(test)]
 mod tests;
 
@@ -5,7 +7,7 @@ mod tests;
 mod serde;
 
 use core::num::{IntErrorKind, ParseFloatError, ParseIntError};
-use core::ops::{Add, AddAssign, Mul, MulAssign};
+use core::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 use core::str::FromStr;
 
 /// 1 byte
@@ -21,9 +23,10 @@ pub const GB: u64 = 10u64.pow(9);
 pub const TB: u64 = 10u64.pow(12);
 /// 1 petabyte
 pub const PB: u64 = 10u64.pow(15);
-/// 1 exbibyte
+/// 1 exabyte
 pub const EB: u64 = 10u64.pow(18);
 
+/// Decimal prefix bytesize
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ByteSizeSi(pub u64);
 
@@ -96,6 +99,7 @@ impl ByteSizeSi {
         Self(n * EB)
     }
 
+    /// Convert into binary prefix unit
     #[inline(always)]
     pub const fn iec(self) -> ByteSizeIec {
         ByteSizeIec(self.0)
@@ -105,14 +109,32 @@ impl ByteSizeSi {
 impl Add for ByteSizeSi {
     type Output = Self;
 
+    #[inline(always)]
     fn add(self, rhs: Self) -> Self::Output {
         Self(self.0 + rhs.0)
     }
 }
 
 impl AddAssign for ByteSizeSi {
+    #[inline(always)]
     fn add_assign(&mut self, rhs: Self) {
         self.0 += rhs.0;
+    }
+}
+
+impl Sub for ByteSizeSi {
+    type Output = Self;
+
+    #[inline(always)]
+    fn sub(self, rhs: Self) -> Self::Output {
+        Self(self.0 - rhs.0)
+    }
+}
+
+impl SubAssign for ByteSizeSi {
+    #[inline(always)]
+    fn sub_assign(&mut self, rhs: Self) {
+        self.0 -= rhs.0;
     }
 }
 
@@ -122,6 +144,7 @@ where
 {
     type Output = Self;
 
+    #[inline]
     fn mul(self, rhs: T) -> Self::Output {
         Self(self.0 * rhs.into())
     }
@@ -131,6 +154,7 @@ impl<T> MulAssign<T> for ByteSizeSi
 where
     T: Into<u64>,
 {
+    #[inline]
     fn mul_assign(&mut self, rhs: T) {
         self.0 *= rhs.into();
     }
@@ -149,6 +173,7 @@ pub const PIB: u64 = 2u64.pow(50);
 /// 1 exbibyte
 pub const EIB: u64 = 2u64.pow(60);
 
+/// Binary prefix bytesize
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ByteSizeIec(pub u64);
 
@@ -221,6 +246,7 @@ impl ByteSizeIec {
         Self(n * EIB)
     }
 
+    /// Convert into decimal prefix unit
     #[inline(always)]
     pub const fn si(self) -> ByteSizeSi {
         ByteSizeSi(self.0)
@@ -230,14 +256,32 @@ impl ByteSizeIec {
 impl Add for ByteSizeIec {
     type Output = Self;
 
+    #[inline(always)]
     fn add(self, rhs: Self) -> Self::Output {
         Self(self.0 + rhs.0)
     }
 }
 
 impl AddAssign for ByteSizeIec {
+    #[inline(always)]
     fn add_assign(&mut self, rhs: Self) {
         self.0 += rhs.0;
+    }
+}
+
+impl Sub for ByteSizeIec {
+    type Output = Self;
+
+    #[inline(always)]
+    fn sub(self, rhs: Self) -> Self::Output {
+        Self(self.0 - rhs.0)
+    }
+}
+
+impl SubAssign for ByteSizeIec {
+    #[inline(always)]
+    fn sub_assign(&mut self, rhs: Self) {
+        self.0 -= rhs.0;
     }
 }
 
@@ -247,6 +291,7 @@ where
 {
     type Output = Self;
 
+    #[inline]
     fn mul(self, rhs: T) -> Self::Output {
         Self(self.0 * rhs.into())
     }
@@ -256,6 +301,7 @@ impl<T> MulAssign<T> for ByteSizeIec
 where
     T: Into<u64>,
 {
+    #[inline]
     fn mul_assign(&mut self, rhs: T) {
         self.0 *= rhs.into();
     }

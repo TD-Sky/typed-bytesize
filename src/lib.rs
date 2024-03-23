@@ -35,7 +35,7 @@ impl ByteSizeSi {
 }
 
 impl core::fmt::Display for ByteSizeSi {
-    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
         if self.0 < KB {
             write!(f, "{}B", self.0)
         } else {
@@ -103,6 +103,18 @@ impl ByteSizeSi {
     #[inline(always)]
     pub const fn iec(self) -> ByteSizeIec {
         ByteSizeIec(self.0)
+    }
+}
+
+impl From<u64> for ByteSizeSi {
+    fn from(n: u64) -> Self {
+        Self(n)
+    }
+}
+
+impl From<ByteSizeSi> for u64 {
+    fn from(bs: ByteSizeSi) -> Self {
+        bs.0
     }
 }
 
@@ -182,7 +194,7 @@ impl ByteSizeIec {
 }
 
 impl core::fmt::Display for ByteSizeIec {
-    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
         if self.0 < KIB {
             write!(f, "{}B", self.0)
         } else {
@@ -250,6 +262,18 @@ impl ByteSizeIec {
     #[inline(always)]
     pub const fn si(self) -> ByteSizeSi {
         ByteSizeSi(self.0)
+    }
+}
+
+impl From<u64> for ByteSizeIec {
+    fn from(n: u64) -> Self {
+        Self(n)
+    }
+}
+
+impl From<ByteSizeIec> for u64 {
+    fn from(bs: ByteSizeIec) -> Self {
+        bs.0
     }
 }
 
@@ -380,7 +404,7 @@ pub enum Error {
 impl std::error::Error for Error {}
 
 impl core::fmt::Display for Error {
-    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
         let msg = match self {
             Self::Empty => "cannot parse bytesize from empty string",
             Self::Invalid => "invalid number found in string",

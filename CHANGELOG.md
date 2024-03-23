@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2024-03-23
+
+### Features
+
+- *(convert)* Allow converting from/to `u64`
+
 ## [0.1.1] - 2024-02-25
 
 ### Documentation

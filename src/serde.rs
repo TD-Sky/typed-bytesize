@@ -8,7 +8,7 @@ impl serde::Serialize for ByteSizeSi {
         S: serde::Serializer,
     {
         if serializer.is_human_readable() {
-            self.to_string().serialize(serializer)
+            serializer.collect_str(self)
         } else {
             self.0.serialize(serializer)
         }
@@ -137,7 +137,7 @@ impl serde::Serialize for ByteSizeIec {
         S: serde::Serializer,
     {
         if serializer.is_human_readable() {
-            self.to_string().serialize(serializer)
+            serializer.collect_str(self)
         } else {
             self.0.serialize(serializer)
         }

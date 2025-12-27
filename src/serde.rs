@@ -20,9 +20,7 @@ impl<'de> serde::Deserialize<'de> for ByteSizeSi {
     where
         D: serde::Deserializer<'de>,
     {
-        use serde::de::Error;
-        use serde::de::Unexpected;
-        use serde::de::Visitor;
+        use serde::de::{Error, Unexpected, Visitor};
 
         struct ByteSizeSiVistor;
 
@@ -149,9 +147,7 @@ impl<'de> serde::Deserialize<'de> for ByteSizeIec {
     where
         D: serde::Deserializer<'de>,
     {
-        use serde::de::Error;
-        use serde::de::Unexpected;
-        use serde::de::Visitor;
+        use serde::de::{Error, Unexpected, Visitor};
 
         struct ByteSizeIecVistor;
 

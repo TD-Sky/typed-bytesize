@@ -6,9 +6,11 @@ mod tests;
 #[cfg(feature = "serde")]
 mod serde;
 
-use core::num::{IntErrorKind, ParseFloatError, ParseIntError};
-use core::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
-use core::str::FromStr;
+use core::{
+    num::{IntErrorKind, ParseFloatError, ParseIntError},
+    ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign},
+    str::FromStr,
+};
 
 /// 1 byte
 pub const B: u64 = 1;
@@ -103,6 +105,36 @@ impl ByteSizeSi {
     #[inline(always)]
     pub const fn iec(self) -> ByteSizeIec {
         ByteSizeIec(self.0)
+    }
+
+    #[inline(always)]
+    pub fn as_kb(self) -> f64 {
+        self.0 as f64 / KB as f64
+    }
+
+    #[inline(always)]
+    pub fn as_mb(self) -> f64 {
+        self.0 as f64 / MB as f64
+    }
+
+    #[inline(always)]
+    pub fn as_gb(self) -> f64 {
+        self.0 as f64 / GB as f64
+    }
+
+    #[inline(always)]
+    pub fn as_tb(self) -> f64 {
+        self.0 as f64 / TB as f64
+    }
+
+    #[inline(always)]
+    pub fn as_pb(self) -> f64 {
+        self.0 as f64 / PB as f64
+    }
+
+    #[inline(always)]
+    pub fn as_eb(self) -> f64 {
+        self.0 as f64 / EB as f64
     }
 }
 
@@ -262,6 +294,36 @@ impl ByteSizeIec {
     #[inline(always)]
     pub const fn si(self) -> ByteSizeSi {
         ByteSizeSi(self.0)
+    }
+
+    #[inline(always)]
+    pub fn as_kib(self) -> f64 {
+        self.0 as f64 / KIB as f64
+    }
+
+    #[inline(always)]
+    pub fn as_mib(self) -> f64 {
+        self.0 as f64 / MIB as f64
+    }
+
+    #[inline(always)]
+    pub fn as_gib(self) -> f64 {
+        self.0 as f64 / GIB as f64
+    }
+
+    #[inline(always)]
+    pub fn as_tib(self) -> f64 {
+        self.0 as f64 / TIB as f64
+    }
+
+    #[inline(always)]
+    pub fn as_pib(self) -> f64 {
+        self.0 as f64 / PIB as f64
+    }
+
+    #[inline(always)]
+    pub fn as_eib(self) -> f64 {
+        self.0 as f64 / EIB as f64
     }
 }
 

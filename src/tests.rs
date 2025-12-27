@@ -1,7 +1,6 @@
 use core::str::FromStr;
 
-use crate::{ByteSizeIec, ByteSizeSi, Error};
-use crate::{GB, KB, KIB, MIB};
+use crate::{ByteSizeIec, ByteSizeSi, Error, GB, KB, KIB, MIB};
 
 macro_rules! assert_si_eq {
     ($s:literal, $bs:expr) => {

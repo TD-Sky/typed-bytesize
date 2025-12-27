@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.4] - 2025-12-27
+
+### Features
+
+- *(convert)* As unit
+
 ## [0.1.3] - 2024-10-04
 
 ### Refactor

@@ -1,8 +1,7 @@
 [package]
 name = "typed-bytesize"
-version = "0.1.3"
-edition = "2021"
-authors = ["Collide <three-dim-sky@foxmail.com>"]
+version = "0.1.4"
+edition = "2024"
 description = "Represent bytesize in decimal or binary prefix unit"
 documentation = "https://docs.rs/typed-bytesize"
 repository = "https://github.com/TD-Sky/typed-bytesize"

@@ -1,6 +1,6 @@
 [package]
 name = "typed-bytesize"
-version = "0.1.4"
+version = "0.1.5"
 edition = "2024"
 description = "Represent bytesize in decimal or binary prefix unit"
 documentation = "https://docs.rs/typed-bytesize"
